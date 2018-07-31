@@ -2,6 +2,18 @@ import XCTest
 @testable import Swift99Bottles
 
 class Swift99BottlesTests: XCTestCase {
+
+  // static var allTests = [
+  //   ("test_a_verse", test_a_verse),
+  //   ("test_another_verse", test_another_verse),
+  //   ("test_verse_2", test_verse_2),
+  //   ("test_verse_1", test_verse_1),
+  //   ("test_verse_0", test_verse_0),
+  //   ("test_a_few_verses", test_a_few_verses),
+  //   ("test_a_couple_verses", test_a_couple_verses),
+  //   // ("test_the_whole_song", test_the_whole_song)
+  // ]
+
     func test_a_verse() {
         let verse99 = Swift99Bottles().verse(99)
         let expected = "99 bottles of beer on the wall, " +
@@ -381,15 +393,4 @@ class Swift99BottlesTests: XCTestCase {
         XCTAssertEqual(expected, Swift99Bottles().song())
     }
 
-
-    static var allTests = [
-        ("test_a_verse", test_a_verse),
-        // ("test_another_verse", test_another_verse),
-        // ("test_verse_2", test_verse_2),
-        // ("test_verse_1", test_verse_1),
-        // ("test_verse_0", test_verse_0),
-        // ("test_a_few_verses", test_a_few_verses),
-        // ("test_a_couple_verses", test_a_couple_verses),
-        // ("test_the_whole_song", test_the_whole_song)
-    ]
 }
