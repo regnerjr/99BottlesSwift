@@ -23,14 +23,28 @@ class Swift99Bottles {
   }
 }
 
+
+/// Bottle Factory uses the Objective-C runtime to find the correct BottleNumber
+/// class as is correct for the given quantity of bottles.
+///
+/// NOTE: `BottleNumber` and any subclasses which are to be instatiated by this factory, **must** subclass from `NSObject` and must register a class name with the Objective-C runtime.
+///
+/// Example Code:
+///
+/// ```
+/// @objc(BottleNumber6)
+/// class BottleNumber6: NSOject {
+/// //provide overrides here
+/// }
+/// ```
+///
 class BottleFactory {
 
   static func make(_ num: Int) -> BottleNumber {
-    switch num {
-    case 0: return BottleNumber0(with: num)
-    case 1: return BottleNumber1(with: num)
-    case 6: return BottleNumber6(with: num)
-    default: return BottleNumber(with: num)
+    if let className = NSClassFromString("BottleNumber\(num)") as? Optional<BottleNumber.Type>, let bottleNumber = className  {
+      return bottleNumber.init(with: num)
+    } else {
+      return BottleNumber.init(with: num)
     }
   }
 }
@@ -62,6 +76,7 @@ class BottleNumber: NSObject {
 
   func action() -> String {
       return "Take \(pronoun()) down and pass it around,"
+
   }
 
   func next() -> BottleNumber {
@@ -94,10 +109,10 @@ class BottleNumber0: BottleNumber {
 
 @objc(BottleNumber6)
 class BottleNumber6: BottleNumber {
-  override func quantity() -> String {
-    return "1"
-  }
   override func container() -> String {
     return "six-pack"
+  }
+  override func quantity() -> String {
+    return "1"
   }
 }

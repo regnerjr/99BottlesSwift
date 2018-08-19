@@ -72,7 +72,6 @@ class Swift99BottlesTests: XCTestCase {
         XCTAssertEqual(expected, Swift99Bottles().verse(6))
     }
 
-
     func test_a_couple_verses() {
         let expected = "99 bottles of beer on the wall, " +
             "99 bottles of beer.\n" +
@@ -409,5 +408,4 @@ class Swift99BottlesTests: XCTestCase {
         """
         XCTAssertEqual(expected, Swift99Bottles().song())
     }
-
 }
