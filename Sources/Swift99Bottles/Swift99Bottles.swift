@@ -23,13 +23,13 @@ class Swift99Bottles {
   }
 }
 
-
 class BottleFactory {
 
   static func make(_ num: Int) -> BottleNumber {
     switch num {
     case 0: return BottleNumber0(with: num)
     case 1: return BottleNumber1(with: num)
+    case 6: return BottleNumber6(with: num)
     default: return BottleNumber(with: num)
     }
   }
@@ -89,5 +89,15 @@ class BottleNumber0: BottleNumber {
   }
   override func next() -> BottleNumber {
     return BottleFactory.make(99)
+  }
+}
+
+@objc(BottleNumber6)
+class BottleNumber6: BottleNumber {
+  override func quantity() -> String {
+    return "1"
+  }
+  override func container() -> String {
+    return "six-pack"
   }
 }

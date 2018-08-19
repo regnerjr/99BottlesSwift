@@ -3,30 +3,30 @@ import XCTest
 
 class Swift99BottlesTests: XCTestCase {
 
-  // static var allTests = [
-  //   ("test_a_verse", test_a_verse),
-  //   ("test_another_verse", test_another_verse),
-  //   ("test_verse_2", test_verse_2),
-  //   ("test_verse_1", test_verse_1),
-  //   ("test_verse_0", test_verse_0),
-  //   ("test_a_few_verses", test_a_few_verses),
-  //   ("test_a_couple_verses", test_a_couple_verses),
-  //   // ("test_the_whole_song", test_the_whole_song)
-  // ]
+    // static var allTests = [
+    //   ("test_a_verse", test_a_verse),
+    //   ("test_another_verse", test_another_verse),
+    //   ("test_verse_2", test_verse_2),
+    //   ("test_verse_1", test_verse_1),
+    //   ("test_verse_0", test_verse_0),
+    //   ("test_a_few_verses", test_a_few_verses),
+    //   ("test_a_couple_verses", test_a_couple_verses),
+    //   // ("test_the_whole_song", test_the_whole_song)
+    // ]
 
     func test_a_verse() {
         let verse99 = Swift99Bottles().verse(99)
         let expected = "99 bottles of beer on the wall, " +
-        "99 bottles of beer.\n" +
-        "Take one down and pass it around, " +
+            "99 bottles of beer.\n" +
+            "Take one down and pass it around, " +
         "98 bottles of beer on the wall.\n"
         XCTAssertEqual(verse99, expected)
     }
 
     func test_another_verse() {
         let expected = "3 bottles of beer on the wall, " +
-        "3 bottles of beer.\n" +
-        "Take one down and pass it around, " +
+            "3 bottles of beer.\n" +
+            "Take one down and pass it around, " +
         "2 bottles of beer on the wall.\n"
         let verse3 = Swift99Bottles().verse(3)
         XCTAssertEqual(expected, verse3)
@@ -34,55 +34,72 @@ class Swift99BottlesTests: XCTestCase {
 
     func test_verse_2() {
         let expected = "2 bottles of beer on the wall, " +
-        "2 bottles of beer.\n" +
-        "Take one down and pass it around, " +
+            "2 bottles of beer.\n" +
+            "Take one down and pass it around, " +
         "1 bottle of beer on the wall.\n"
         XCTAssertEqual(expected, Swift99Bottles().verse(2))
     }
 
     func test_verse_1() {
         let expected = "1 bottle of beer on the wall, " +
-        "1 bottle of beer.\n" +
-        "Take it down and pass it around, " +
+            "1 bottle of beer.\n" +
+            "Take it down and pass it around, " +
         "no more bottles of beer on the wall.\n"
         XCTAssertEqual(expected, Swift99Bottles().verse(1))
     }
 
     func test_verse_0() {
         let expected = "No more bottles of beer on the wall, " +
-        "no more bottles of beer.\n" +
-        "Go to the store and buy some more, " +
+            "no more bottles of beer.\n" +
+            "Go to the store and buy some more, " +
         "99 bottles of beer on the wall.\n"
         XCTAssertEqual(expected, Swift99Bottles().verse(0))
     }
 
+    func test_verse_7() {
+        let expected = "7 bottles of beer on the wall, " +
+            "7 bottles of beer.\n" +
+            "Take one down and pass it around, " +
+        "1 six-pack of beer on the wall.\n"
+        XCTAssertEqual(expected, Swift99Bottles().verse(7))
+    }
+
+    func test_verse_6() {
+        let expected = "1 six-pack of beer on the wall, " +
+            "1 six-pack of beer.\n" +
+            "Take one down and pass it around, " +
+        "5 bottles of beer on the wall.\n"
+        XCTAssertEqual(expected, Swift99Bottles().verse(6))
+    }
+
+
     func test_a_couple_verses() {
         let expected = "99 bottles of beer on the wall, " +
-        "99 bottles of beer.\n" +
-        "Take one down and pass it around, " +
-        "98 bottles of beer on the wall.\n" +
-        "\n" +
-        "98 bottles of beer on the wall, " +
-        "98 bottles of beer.\n" +
-        "Take one down and pass it around, " +
+            "99 bottles of beer.\n" +
+            "Take one down and pass it around, " +
+            "98 bottles of beer on the wall.\n" +
+            "\n" +
+            "98 bottles of beer on the wall, " +
+            "98 bottles of beer.\n" +
+            "Take one down and pass it around, " +
         "97 bottles of beer on the wall.\n"
         XCTAssertEqual(expected, Swift99Bottles().verses(99, 98))
     }
 
     func test_a_few_verses() {
         let expected = "2 bottles of beer on the wall, " +
-        "2 bottles of beer.\n" +
-        "Take one down and pass it around, " +
-        "1 bottle of beer on the wall.\n" +
-        "\n" +
-        "1 bottle of beer on the wall, " +
-        "1 bottle of beer.\n" +
-        "Take it down and pass it around, " +
-        "no more bottles of beer on the wall.\n" +
-        "\n" +
-        "No more bottles of beer on the wall, " +
-        "no more bottles of beer.\n" +
-        "Go to the store and buy some more, " +
+            "2 bottles of beer.\n" +
+            "Take one down and pass it around, " +
+            "1 bottle of beer on the wall.\n" +
+            "\n" +
+            "1 bottle of beer on the wall, " +
+            "1 bottle of beer.\n" +
+            "Take it down and pass it around, " +
+            "no more bottles of beer on the wall.\n" +
+            "\n" +
+            "No more bottles of beer on the wall, " +
+            "no more bottles of beer.\n" +
+            "Go to the store and buy some more, " +
         "99 bottles of beer on the wall.\n"
         XCTAssertEqual(expected, Swift99Bottles().verses(2, 0))
     }
@@ -366,9 +383,9 @@ class Swift99BottlesTests: XCTestCase {
         Take one down and pass it around, 7 bottles of beer on the wall.
 
         7 bottles of beer on the wall, 7 bottles of beer.
-        Take one down and pass it around, 6 bottles of beer on the wall.
+        Take one down and pass it around, 1 six-pack of beer on the wall.
 
-        6 bottles of beer on the wall, 6 bottles of beer.
+        1 six-pack of beer on the wall, 1 six-pack of beer.
         Take one down and pass it around, 5 bottles of beer on the wall.
 
         5 bottles of beer on the wall, 5 bottles of beer.
