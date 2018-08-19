@@ -11,7 +11,7 @@ class Swift99Bottles {
   }
 
   func verse(_ num: Int) -> String {
-    let number = BottleNumber(with: num)
+    let number = BottleFactory.make(num)
 
     return """
     \(number.description.capitalize()) of beer on the wall, \
@@ -23,6 +23,19 @@ class Swift99Bottles {
   }
 }
 
+
+class BottleFactory {
+
+  static func make(_ num: Int) -> BottleNumber {
+    switch num {
+    case 0: return BottleNumber0(with: num)
+    case 1: return BottleNumber1(with: num)
+    default: return BottleNumber(with: num)
+    }
+  }
+}
+
+@objc(BottleNumber)
 class BottleNumber: NSObject {
 
   private let num: Int
@@ -36,42 +49,45 @@ class BottleNumber: NSObject {
   }
 
   func container() -> String {
-    if num == 1 {
-      return "bottle"
-    } else {
       return "bottles"
-    }
   }
 
   func pronoun() -> String {
-    if num == 1 {
-      return "it"
-    } else {
       return "one"
-    }
   }
 
   func quantity() -> String {
-    if num == 0 {
-      return "no more"
-    } else {
       return "\(num)"
     }
-  }
 
   func action() -> String {
-    if num == 0 {
-      return "Go to the store and buy some more,"
-    } else {
       return "Take \(pronoun()) down and pass it around,"
-    }
   }
 
   func next() -> BottleNumber {
-    if num == 0 {
-      return BottleNumber(with: 99)
-    } else {
-      return BottleNumber(with: num - 1)
-    }
+    return BottleFactory.make(num - 1)
+  }
+}
+
+@objc(BottleNumber1)
+class BottleNumber1: BottleNumber {
+  override func container() -> String {
+    return "bottle"
+  }
+  override func pronoun() -> String {
+    return "it"
+  }
+}
+
+@objc(BottleNumber0)
+class BottleNumber0: BottleNumber {
+  override func quantity() -> String {
+    return "no more"
+  }
+  override func action() -> String {
+    return "Go to the store and buy some more,"
+  }
+  override func next() -> BottleNumber {
+    return BottleFactory.make(99)
   }
 }
